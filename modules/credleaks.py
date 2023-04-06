@@ -17,12 +17,12 @@ class Credleaks():
         credLeakDir = './credleaks'
 
         if not os.path.exists(potfileDir):
-            print '[-] The potfile directory is missing. Symlink your location to ./potfile and see if that works'
+            print('[-] The potfile directory is missing. Symlink your location to ./potfile and see if that works')
             return
         
 
         if not os.path.exists(credLeakDir):
-            print '[-] The credleaks directory is missing. Symlink your location to ./credleaks and see if that works'
+            print('[-] The credleaks directory is missing. Symlink your location to ./credleaks and see if that works')
             return
             
         #for each domain/ip provided
@@ -34,7 +34,7 @@ class Credleaks():
             credResult=[]
 
 
-            print '[+] Searching credential dumps for entries that contain '+l
+            print('[+] Searching credential dumps for entries that contain '+l)
             #overall, take the lookup value (preferably a domain) and search the dumps for it
             #for each file in ./credleaks directory
             #really need to get this data out of text files an into an indexed form. it's slow af 
@@ -65,7 +65,7 @@ class Credleaks():
                             dumpDict['xxx']=str(line.rstrip("\r\n"))
                 #print each file searched and how many matches if verbose
                 if args.verbose is True: 
-                    print '[i] Searched ' + str(credFileName)+' and found '+ str(j)
+                    print('[i] Searched ' + str(credFileName)+' and found '+ str(j))
 
             
             #print hash and user of files if verbose    
@@ -74,7 +74,7 @@ class Credleaks():
                     print(str(u)) 
 
             #start printing stuff and appending to credResult
-            print '[+] Searching Local Credential Dumps in ./credleaks against potfile in ./potfile '
+            print('[+] Searching Local Credential Dumps in ./credleaks against potfile in ./potfile ')
             credFile.writelines('********EMAILS FOUND BELOW********\n\n\n\n')
             credResult.append('********EMAILS FOUND BELOW********\n\n\n\n')
             
@@ -94,7 +94,7 @@ class Credleaks():
                 #open a pot file
                 with open('./potfile/'+potFileName, 'r') as potFile:
                     #tell user you are looking
-                    print '[i] Any creds you have in your potfile will appear below as user:hash:plain : '
+                    print('[i] Any creds you have in your potfile will appear below as user:hash:plain : ')
                     #then look at every line
                     for potLine in potFile:
                         #then for every line look at every hash and user in the dict
@@ -103,7 +103,7 @@ class Credleaks():
                             #that is also the same length as the original hash (this is probably a crappy check tho...)
                             if str(h) == str(potLine[0:len(h)]):
                                 #print the user: and the line from the potfile (hash:plain) to the user
-                                print str(u)+':'+str(potLine.rstrip("\r\n"))
+                                print(str(u)+':'+str(potLine.rstrip("\r\n")))
                                 #need to append the output to a variable to return or write to the file
                                 #this is separate because not all found usernames/emails have hashes and not all hashes are cracked
                                 #write to text file
@@ -113,4 +113,4 @@ class Credleaks():
 
 
             return credResult   
-            print credResult
+            print(credResult)

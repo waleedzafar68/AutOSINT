@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import requests, time
-from google import search
+from googlesearch import search
 from lxml import html
 
 class Pastebinscrape():

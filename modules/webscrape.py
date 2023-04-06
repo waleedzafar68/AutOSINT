@@ -50,7 +50,7 @@ class Scraper(object):
             for name,url in scrapeUrls.items():
                 #indeed matches jobs. yeah yeah it doesnt use their api yet
                 if name == 'indeed':
-                    if args.verbose is True:print '[+] Searching job postings on indeed.com for %s:' % l.split('.')[0]
+                    if args.verbose is True:print('[+] Searching job postings on indeed.com for %s:' % l.split('.')[0])
                     
                     #http://docs.python-guide.org/en/latest/scenarios/scrape/
                     try:
@@ -64,7 +64,7 @@ class Scraper(object):
 
                     #count jobs
                     jobCount = itree.xpath('//div[@id="searchCount"]/text()')
-                    print '[+] '+str(''.join(jobCount)) + ' Jobs posted on indeed.com that match %s:' % (l.split('.')[0])
+                    print('[+] '+str(''.join(jobCount)) + ' Jobs posted on indeed.com that match %s:' % (l.split('.')[0]))
                     jobTitle = itree.xpath('//a[@data-tn-element="jobTitle"]/text()')
                     self.indeedResult.append('\n[+] Job postings on indeed.com that match %s \n\n' % l.split('.')[0])
                     for t in jobTitle:
@@ -74,7 +74,7 @@ class Scraper(object):
                 #https://developer.github.com/v3/search/
                 #http://docs.python-guide.org/en/latest/scenarios/json/
                 if name == 'github':
-                    if args.verbose is True:print '[+] Searching repository names on Github for %s' % (l.split('.')[0])
+                    if args.verbose is True:print ('[+] Searching repository names on Github for %s' % (l.split('.')[0]))
 
                     #http://docs.python-guide.org/en/latest/scenarios/scrape/
                     try:
@@ -93,7 +93,7 @@ class Scraper(object):
 
                 if name == 'virustotal':
                     if not os.path.exists(apiKeyDir + 'virus_total.key'):
-                        print '[-] Missing %svirus_total.key' % apiKeyDir
+                        print('[-] Missing %svirus_total.key' % apiKeyDir)
                         
                         vtApiKey=raw_input("Please provide an API Key: ")
         
